@@ -1,9 +1,8 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/irinatag/uber-api-project.svg?branch=master)](https://travis-ci.org/irinatag/uber-api-project)
 
-Things you may want to cover:
+Coming soon!
 
 * Ruby version
 
