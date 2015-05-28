@@ -12,6 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require leaflet
  */
 
  @import "semantic-ui";
+
+ #map {
+   height: 1400px;
+ }
