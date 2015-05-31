@@ -2,9 +2,11 @@ class SessionsController < ApplicationController
   def create
     p "*" * 50
     p auth_hash
+    p auth_hash[:credentials][:token]
     user = User.where(uid: auth_hash[:uid], provider: auth_hash[:provider]).first_or_create
     session[:user_id] = user.id
-    redirect_to root_path
+    session[:request_token] = auth_hash[:credentials][:token]
+    redirect_to map_path
   end
 
   def destroy

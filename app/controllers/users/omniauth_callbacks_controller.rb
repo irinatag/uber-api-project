@@ -4,15 +4,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(auth_hash)
 
     if @user.persisted?
-      puts "*" * 50
-      puts "i am here now"
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Uber") if is_navigational_format?
     else
       redirect_to map_path
     end
 
-    # if user is successfully logged in on meetup
+    # if user is successfully logged in on uber
   end
 
   protected
