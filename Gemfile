@@ -27,6 +27,7 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass', branch: 'v1.0beta'
 
 gem 'leaflet-rails'
 
+gem 'omniauth'
 gem 'omniauth-uber'
 
 # Use ActiveModel has_secure_password

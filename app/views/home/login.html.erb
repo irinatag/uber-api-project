@@ -1,6 +1,6 @@
 <html>
 <head>
- <title>Planned Events Map Viewer</title>
+  <title>Planned Events Map Viewer</title>
 </head>
 
 <body>
@@ -9,7 +9,15 @@
     <a class="title item">Events Map Viewer</a>
     <div class='right menu'>
       <div class='item'>
-        <div class="huge ui inverted blue button">Sign in</div>
+        <div class="huge ui inverted blue button">
+          <% if current_user %>
+          Welcome <strong><%= current_user.first_name %></strong>!
+            <%= link_to "Sign out", signout_path, id: "sign_out" %>
+          <% else %>
+            <%= link_to "Sign in with Uber", '/auth/uber', id: "sign_in" %>
+          <% end %>
+
+        </div>
       </div>
     </div>
   </div>

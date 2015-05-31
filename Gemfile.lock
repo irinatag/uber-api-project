@@ -215,6 +215,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   leaflet-rails
+  omniauth
   omniauth-uber
   pg
   rails (= 4.2.0)
