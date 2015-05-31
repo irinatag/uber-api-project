@@ -2,15 +2,33 @@
 <html>
 <head>
   <title>UberApiProject</title>
+  <%= include_gon %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"></script>
-  <link href="http://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet" />
+  <script src="https://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox.js/v1.0.2/mapbox.css" rel="stylesheet" />
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class='ui fixed inverted menu' id="navbar">
+    <a class="title item">Events Map Viewer</a>
+    <div class='right menu'>
+      <div class='item'>
+        <div class="huge ui inverted blue button">
+          <% if current_user %>
+          Welcome <strong><%= current_user.first_name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+          <% else %>
+          <%= link_to "Sign in with Uber", '/auth/uber', id: "sign_in" %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <%= yield %>
 
 </body>
 </html>

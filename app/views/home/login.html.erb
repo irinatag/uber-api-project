@@ -5,24 +5,8 @@
 
 <body>
 
-  <div class='ui fixed inverted menu'>
-    <a class="title item">Events Map Viewer</a>
-    <div class='right menu'>
-      <div class='item'>
-        <div class="huge ui inverted blue button">
-          <% if current_user %>
-          Welcome <strong><%= current_user.first_name %></strong>!
-            <%= link_to "Sign out", signout_path, id: "sign_out" %>
-          <% else %>
-            <%= link_to "Sign in with Uber", '/auth/uber', id: "sign_in" %>
-          <% end %>
+    <div id="map" class="pusher">my map</div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="map">my map</div>
 
 </body>
 </html>
