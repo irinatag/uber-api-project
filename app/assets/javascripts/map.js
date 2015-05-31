@@ -32,4 +32,12 @@ $(document).ready(function() {
     marker.bindPopup(popup).openPopup();
 
   })
+
+  // get data from controller via gon
+  console.log(gon.uber_cars)
+  var cars_hash = gon.uber_cars
+  var cars_json = JSON.parse(cars_hash)
+
+  console.log(cars_json)
+
 });
