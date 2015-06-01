@@ -10,7 +10,7 @@ $(document).ready(function() {
   layer.addTo(map);
 
   var userLatitude
-  , userLongitude
+  var userLongitude
 
   navigator.geolocation.watchPosition(function(position) {
     // Update latitude and longitude
@@ -39,5 +39,27 @@ $(document).ready(function() {
   var cars_json = JSON.parse(cars_hash)
 
   console.log(cars_json)
+
+  console.log(cars_json["prices"][0]["display_name"])
+  console.log(cars_json["prices"][0]["product_id"])
+
+  for(var i=0; i < cars_json["prices"].length; i++) {
+    var name = cars_json["prices"][i]["display_name"];
+    var distance = cars_json["prices"][i]["distance"];
+    var estimate = cars_json["prices"][i]["estimate"];
+    var popup = '<b>' + name + '</b><br>' + distance + ' miles away <br> Cost Estimate: ' + estimate;
+
+    var CarIcon = L.Icon.Default.extend({
+           options: {
+                 iconUrl: 'assets/mono-uberx.png'
+           }
+        });
+
+    var carIcon = new CarIcon();
+
+    var marker = L.marker([37.777570, -122.429927], {icon: carIcon}).addTo(map);
+
+    marker.bindPopup(popup);
+  }
 
 });
