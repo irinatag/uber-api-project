@@ -12,8 +12,10 @@ $(document).ready(function() {
   var userLatitude
   var userLongitude
 
+// show current coordinates on map
+
   navigator.geolocation.watchPosition(function(position) {
-    // Update latitude and longitude
+
     userLatitude = position.coords.latitude;
     userLongitude = position.coords.longitude;
 
@@ -28,10 +30,36 @@ $(document).ready(function() {
     var redIcon = new RedIcon();
 
     var marker = L.marker([userLatitude, userLongitude], {icon: redIcon}).addTo(map);
-    var popup = 'Your current coordinates: <br>' + '<b>' + userLatitude + '</b><br><b>' + userLongitude + '</b>';
+    var popup = 'Your current coordinates: <br>' + '<b> Latitude: </b>' + userLatitude + '<br><b> Longitude </b>' + userLongitude ;
     marker.bindPopup(popup).openPopup();
 
   })
+
+// show destination coordinates on map
+
+  $("input[type='submit']").on('click', function(event) {
+
+    var end_lat = $("#car_end_lat").val();
+    var end_lon = $("#car_end_lon").val();
+
+    console.log(end_lat);
+    console.log(end_lon);
+
+    event.preventDefault();
+
+    var BlackIcon = L.Icon.Default.extend({
+      options: {
+        iconUrl: 'assets/marker-icon-black.png'
+      }
+    });
+
+    var blackIcon = new BlackIcon();
+
+    var marker = L.marker([end_lat, end_lon], {icon: blackIcon}).addTo(map);
+    var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + end_lat + '<br><b> Longitude </b>' + end_lon ;
+    marker.bindPopup(popup).openPopup();
+  });
+
 
   // get data from controller via gon
   console.log(gon.uber_cars)
@@ -49,17 +77,7 @@ $(document).ready(function() {
     var estimate = cars_json["prices"][i]["estimate"];
     var popup = '<b>' + name + '</b><br>' + distance + ' miles away <br> Cost Estimate: ' + estimate;
 
-    var CarIcon = L.Icon.Default.extend({
-           options: {
-                 iconUrl: 'assets/mono-uberx.png'
-           }
-        });
-
-    var carIcon = new CarIcon();
-
-    var marker = L.marker([37.777570, -122.429927], {icon: carIcon}).addTo(map);
-
-    marker.bindPopup(popup);
+    $('#cartitle').append('<b>' + name + '</b><br>');
   }
 
 });
