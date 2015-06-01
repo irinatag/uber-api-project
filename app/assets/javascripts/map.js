@@ -35,7 +35,7 @@ $(document).ready(function() {
 
   })
 
-// show destination coordinates on map
+// show destination coordinates on map & post coordinates to the db
 
   $("input[type='submit']").on('click', function(event) {
 
@@ -47,21 +47,41 @@ $(document).ready(function() {
 
     event.preventDefault();
 
-    var BlackIcon = L.Icon.Default.extend({
-      options: {
-        iconUrl: 'assets/marker-icon-black.png'
+    $.ajax("/cars", {
+      type: 'post',
+      data: {
+        car: {
+          end_lat: end_lat,
+          end_lon: end_lon,
+        }
       }
+    }).done(function(data) {
+
+      $("#car_end_lat").val('');
+      $("#car_end_lon").val('');
+
+      var BlackIcon = L.Icon.Default.extend({
+        options: {
+          iconUrl: 'assets/marker-icon-black.png'
+        }
+      });
+
+      var blackIcon = new BlackIcon();
+
+      var marker = L.marker([end_lat, end_lon], {icon: blackIcon}).addTo(map);
+      var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + end_lat + '<br><b> Longitude </b>' + end_lon ;
+      marker.bindPopup(popup).openPopup();
+
+    }).fail(function(data) {
+
+      console.log(data.responseText);
+
     });
-
-    var blackIcon = new BlackIcon();
-
-    var marker = L.marker([end_lat, end_lon], {icon: blackIcon}).addTo(map);
-    var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + end_lat + '<br><b> Longitude </b>' + end_lon ;
-    marker.bindPopup(popup).openPopup();
   });
 
 
-  // get data from controller via gon
+// get data from controller via gon
+
   console.log(gon.uber_cars)
   var cars_hash = gon.uber_cars
   var cars_json = JSON.parse(cars_hash)
