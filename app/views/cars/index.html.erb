@@ -1,0 +1,43 @@
+<html>
+<head>
+  <title>View Ubers in the Area, and order one via Uber API!</title>
+</head>
+
+<body>
+  <div class="ui grid">
+    <div class="row pusher">
+      <div class="sixteen wide column pusher">
+        <form class="ui form pusher2">
+          <div id="form">
+            <h3 class="ui dividing header">Where are you going?</h3>
+            <%= form_for(@car) do |f| %>
+            <div class="field">
+              <div class="two fields">
+                <div class="field">
+                  <%= f.label "end_latitude"%>
+                  <%= f.text_field :end_lat  %>
+                </div>
+                <div class="field">
+                  <%= f.label "end_longtitude" %>
+                  <%= f.text_field :end_lon  %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%= f.submit "Submit your coordinates", class: "ui secondary button" %>
+          <% end %>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="row">
+      <div class="sixteen wide column">
+        <div id="map">my map</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
