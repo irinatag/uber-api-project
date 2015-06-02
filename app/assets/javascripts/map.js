@@ -20,7 +20,7 @@ $(document).ready(function() {
 
     var marker = L.marker([lat, lon], {icon: name}).addTo(map);
 
-    var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + lat + '<br><b> Longitude </b>' + lon ;
+    var popup = '<div data-end-lat="' + lat + '" data-end-lon="' + lon + '"</div>Your destination coordinates: <br>' + '<b> Latitude: </b>' + lat + '<br><b> Longitude </b>' + lon ;
 
     marker.bindPopup(popup).openPopup();
   }
@@ -55,7 +55,7 @@ $(document).ready(function() {
   // show destination coordinates on map & post coordinates to the db
 
   var end_lat
-  var end_lat
+  var end_lon
   var blackIcon
 
   $("input[type='submit']").on('click', function(event) {

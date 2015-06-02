@@ -4,10 +4,10 @@ class MapsController < ApplicationController
 
   def show
     @uber_cars = (RestClient::Request.execute(
-      :method => :get,
-      :url => "https://api.uber.com/v1/estimates/price?start_longitude=#{start_lon}&end_longitude=#{end_lon}&start_latitude=#{start_lat}&end_latitude=#{end_lat}",
-      :headers => {'Authorization' => 'Bearer ' + session[:request_token], :content_type => 'application/json'}
-      ))
+    :method => :get,
+    :url => "https://api.uber.com/v1/estimates/price?start_longitude=#{start_lon}&end_longitude=#{end_lon}&start_latitude=#{start_lat}&end_latitude=#{end_lat}",
+    :headers => {'Authorization' => 'Bearer ' + session[:request_token], :content_type => 'application/json'}
+    ))
 
     p @uber_cars
 
