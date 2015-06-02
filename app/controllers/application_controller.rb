@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     render :template => 'shared/404.html', :status => 404
   end
 
-  def render_page_not_found
+  def render_error
     render :template => 'shared/500.html', :status => 500
   end
 
