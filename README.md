@@ -20,6 +20,8 @@ Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
   * Database initialization:
   <tt>rails server or rails s</tt>
 
+* Under development: requesting Rides to your location w/ /v1/requests endpoint.
+
 * Screenshots:
 
 (a) Homepage 1: allow geolocation to get your current location
