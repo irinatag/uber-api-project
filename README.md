@@ -2,26 +2,32 @@
 
 [![Build Status](https://travis-ci.org/irinatag/uber-api-project.svg?branch=master)](https://travis-ci.org/irinatag/uber-api-project)
 
-Coming soon!
+HowFarCanYouGo app lets you find the ultimate Uber option for your trip. The app locates you based on geolocation, and asks for your destination. You can them authenticate via your Uber account, and view your ride options.
 
-* Ruby version
-
-* System dependencies
+Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
 
 * Configuration
 
-* Database creation
+  * Ruby 2.2.0
 
-* Database initialization
+  * Rails 4.2.0
 
-* How to run the test suite
+  * Database creation:
+  <tt>rake db:drop db:create db:migrate</tt>
 
-* Services (job queues, cache servers, search engines, etc.)
+  * Database initialization:
+  <tt>rails server or rails s</tt>
 
-* Deployment instructions
+* Screenshots:
 
-* ...
+(a) Homepage: start and end destinations
 
+![Homepage: choose start and end destination](public/images/homepage.png)
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+(b) Uber Authentication Page: register or authenticate to login
+
+![Authentication](public/images/auth.png)
+
+(c) View Ride Options: preview price estimates, time duration & ride options
+
+![Ride Options](public/images/rides.png)
