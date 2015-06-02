@@ -25,41 +25,6 @@ $(document).ready(function() {
     marker.bindPopup(popup).openPopup();
   }
 
-  // show destination coordinates on map & post coordinates to the db
-
-  var end_lat
-  var end_lat
-  var blackIcon
-
-  $("input[type='submit']").on('click', function(event) {
-
-    end_lat = $("#car_end_lat").val();
-    end_lon = $("#car_end_lon").val();
-
-    console.log(end_lat);
-    console.log(end_lon);
-
-    event.preventDefault();
-
-    $.ajax("/cars", {
-      type: 'post',
-      data: {
-        car: {
-          end_lat: end_lat,
-          end_lon: end_lon,
-        }
-      }
-    }).done(function(data) {
-
-      $("#car_end_lat").val('');
-      $("#car_end_lon").val('');
-      placeIcon('assets/marker-icon-black.png', blackIcon, end_lat, end_lon);
-
-    }).fail(function(data) {
-      console.log(data.responseText);
-    });
-  });
-
   var userLatitude
   var userLongitude
 
@@ -86,6 +51,43 @@ $(document).ready(function() {
     marker.bindPopup(popup).openPopup();
 
   })
+
+  // show destination coordinates on map & post coordinates to the db
+
+  var end_lat
+  var end_lat
+  var blackIcon
+
+  $("input[type='submit']").on('click', function(event) {
+
+    end_lat = $("#car_end_lat").val();
+    end_lon = $("#car_end_lon").val();
+
+    console.log(end_lat);
+    console.log(end_lon);
+
+    event.preventDefault();
+
+    $.ajax("/cars", {
+      type: 'post',
+      data: {
+        car: {
+          end_lat: end_lat,
+          end_lon: end_lon,
+          start_lat: userLatitude,
+          start_lon: userLongitude,
+        }
+      }
+    }).done(function(data) {
+
+      $("#car_end_lat").val('');
+      $("#car_end_lon").val('');
+      placeIcon('assets/marker-icon-black.png', blackIcon, end_lat, end_lon);
+
+    }).fail(function(data) {
+      console.log(data.responseText);
+    });
+  });
 
   // get data from controller via gon
 

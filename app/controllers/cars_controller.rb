@@ -17,7 +17,7 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:name, :distance, :estimate, :high_estimate, :low_estimate, :duration, :surge_multiplier, :currency_code, :end_lat, :end_lon)
+    params.require(:car).permit(:name, :distance, :estimate, :high_estimate, :low_estimate, :duration, :surge_multiplier, :currency_code, :end_lat, :end_lon, :start_lat, :start_lon)
   end
 
 end
