@@ -4,6 +4,8 @@
 
 HowFarCanYouGo app lets you find the ultimate Uber option for your trip. The app locates you based on geolocation, and asks for your destination. You can authenticate via your Uber account, and view your ride options.
 
+Deployed on Heroku: https://cryptic-anchorage-7174.herokuapp.com/
+
 Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
 
 * Configuration
@@ -20,14 +22,18 @@ Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
 
 * Screenshots:
 
-(a) Homepage: start and end destinations
+(a) Homepage 1: allow geolocation to get your current location
 
-![Homepage: choose start and end destination](public/images/homepage.png)
+![Homepage: determine start destination](public/images/geolocation.png)
 
-(b) Uber Authentication Page: register or authenticate to login
+(b) Homepage 2: input & view end destination
+
+![Homepage: choose end destination](public/images/homepage.png)
+
+(c) Uber Authentication Page: register or authenticate to login
 
 ![Authentication](public/images/auth.png)
 
-(c) View Ride Options: preview price estimates, time duration & ride options
+(d) View Ride Options: preview price estimates, time duration & ride options
 
 ![Ride Options](public/images/rides.png)
