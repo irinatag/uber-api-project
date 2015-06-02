@@ -16,7 +16,7 @@ Thoughts on improving the Uber API & tools for developers to help them build bet
 
 3. Create a developer/Sandbox console where a developer can test the API link they constructed. While the Sandbox tab provides the URL to make calls, it doesn't help the developer test out the URL she constructs with the endpoints.
 
-This would be especially helpful support for the Request endpoint. Since it is the only write-access level endpoint, it's important to give developer tools to be able to manipulate request parameters in Sandbox. The tool will specify what parameters are required or optional, and you can get a JSON response immediately in the console.
+  This would be especially helpful support for the Request endpoint. Since it is the only write-access level endpoint, it's important to give developer tools to be able to manipulate request parameters in Sandbox. The tool will specify what parameters are required or optional, and you can get a JSON response immediately in the console.
 
 4. Application examples in different languages. The documentation uses Python, and the example app on Github is a Python/Flask app. Would be great to add app examples in another language (Ruby, Go, etc.) and on mobile (iOS, Swift, Android, etc.).
 
