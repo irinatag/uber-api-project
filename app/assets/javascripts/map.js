@@ -9,38 +9,32 @@ $(document).ready(function() {
 
   layer.addTo(map);
 
-  var userLatitude
-  var userLongitude
-
-// show current coordinates on map
-
-  navigator.geolocation.watchPosition(function(position) {
-
-    userLatitude = position.coords.latitude;
-    userLongitude = position.coords.longitude;
-
-    console.log(userLatitude)
-    console.log(userLongitude)
-
-    var RedIcon = L.Icon.Default.extend({
+  function placeIcon(iconUrl, name, lat, lon) {
+    var Icon = L.Icon.Default.extend({
       options: {
-        iconUrl: 'assets/marker-icon-red.png'
+        iconUrl: iconUrl
       }
     });
-    var redIcon = new RedIcon();
 
-    var marker = L.marker([userLatitude, userLongitude], {icon: redIcon}).addTo(map);
-    var popup = 'Your current coordinates: <br>' + '<b> Latitude: </b>' + userLatitude + '<br><b> Longitude </b>' + userLongitude ;
+    name = new Icon();
+
+    var marker = L.marker([lat, lon], {icon: name}).addTo(map);
+
+    var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + lat + '<br><b> Longitude </b>' + lon ;
+
     marker.bindPopup(popup).openPopup();
+  }
 
-  })
+  // show destination coordinates on map & post coordinates to the db
 
-// show destination coordinates on map & post coordinates to the db
+  var end_lat
+  var end_lat
+  var blackIcon
 
   $("input[type='submit']").on('click', function(event) {
 
-    var end_lat = $("#car_end_lat").val();
-    var end_lon = $("#car_end_lon").val();
+    end_lat = $("#car_end_lat").val();
+    end_lon = $("#car_end_lon").val();
 
     console.log(end_lat);
     console.log(end_lon);
@@ -59,28 +53,41 @@ $(document).ready(function() {
 
       $("#car_end_lat").val('');
       $("#car_end_lon").val('');
-
-      var BlackIcon = L.Icon.Default.extend({
-        options: {
-          iconUrl: 'assets/marker-icon-black.png'
-        }
-      });
-
-      var blackIcon = new BlackIcon();
-
-      var marker = L.marker([end_lat, end_lon], {icon: blackIcon}).addTo(map);
-      var popup = 'Your destination coordinates: <br>' + '<b> Latitude: </b>' + end_lat + '<br><b> Longitude </b>' + end_lon ;
-      marker.bindPopup(popup).openPopup();
+      placeIcon('assets/marker-icon-black.png', blackIcon, end_lat, end_lon);
 
     }).fail(function(data) {
-
       console.log(data.responseText);
-
     });
   });
 
+  var userLatitude
+  var userLongitude
 
-// get data from controller via gon
+  // show current coordinates on map
+
+  navigator.geolocation.watchPosition(function(position) {
+
+    userLatitude = position.coords.latitude;
+    userLongitude = position.coords.longitude;
+
+    console.log(userLatitude)
+    console.log(userLongitude)
+
+    var RedIcon = L.Icon.Default.extend({
+      options: {
+        iconUrl: 'assets/marker-icon-red.png'
+      }
+    });
+    var redIcon = new RedIcon();
+
+    var marker = L.marker([userLatitude, userLongitude], {icon: redIcon}).addTo(map);
+    var popup = 'Your current coordinates: <br>' + '<b> Latitude: </b>' + userLatitude + '<br><b> Longitude </b>' + userLongitude ;
+
+    marker.bindPopup(popup).openPopup();
+
+  })
+
+  // get data from controller via gon
 
   console.log(gon.uber_cars)
   var cars_hash = gon.uber_cars
@@ -95,9 +102,19 @@ $(document).ready(function() {
     var name = cars_json["prices"][i]["display_name"];
     var distance = cars_json["prices"][i]["distance"];
     var estimate = cars_json["prices"][i]["estimate"];
-    var popup = '<b>' + name + '</b><br>' + distance + ' miles away <br> Cost Estimate: ' + estimate;
+    var high_estimate = cars_json["prices"][i]["high_estimate"];
+    var low_estimate = cars_json["prices"][i]["low_estimate"];
+    var duration_seconds = cars_json["prices"][i]["duration"];
+    var dur_minutes = Math.floor(duration_seconds / 60);
+    var dur_remainsec = duration_seconds - dur_minutes * 60;
+    var currency = cars_json["prices"][i]["currency_code"];
+    // var popup = '<b>' + name + '</b><br>' + distance + ' miles away <br> Cost Estimate: ' + estimate;
 
-    $('#cartitle').append('<b>' + name + '</b><br>');
+    $('#accordion').append('<div class="active title"><h2>' + name + '</h2><div class="ui secondary button">Get an Uber</div></div>' +
+    '<div class="active content"><h5>' + distance + ' miles away</h5><br>' +
+    '<p>Cost range: ' + estimate + '<br> Trip Duration: ' + dur_minutes + ' minutes</p></div>');
+
+
   }
 
 });
