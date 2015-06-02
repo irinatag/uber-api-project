@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/irinatag/uber-api-project.svg?branch=master)](https://travis-ci.org/irinatag/uber-api-project)
 
-HowFarCanYouGo app lets you find the ultimate Uber option for your trip. The app locates you based on geolocation, and asks for your destination. You can them authenticate via your Uber account, and view your ride options.
+HowFarCanYouGo app lets you find the ultimate Uber option for your trip. The app locates you based on geolocation, and asks for your destination. You can authenticate via your Uber account, and view your ride options.
 
 Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
 
