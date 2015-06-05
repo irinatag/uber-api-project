@@ -35,9 +35,6 @@ $(document).ready(function() {
     userLatitude = position.coords.latitude;
     userLongitude = position.coords.longitude;
 
-    console.log(userLatitude)
-    console.log(userLongitude)
-
     var RedIcon = L.Icon.Default.extend({
       options: {
         iconUrl: 'assets/marker-icon-red.png'
@@ -63,9 +60,6 @@ $(document).ready(function() {
     end_lat = $("#car_end_lat").val();
     end_lon = $("#car_end_lon").val();
 
-    console.log(end_lat);
-    console.log(end_lon);
-
     event.preventDefault();
 
     $.ajax("/cars", {
@@ -85,20 +79,14 @@ $(document).ready(function() {
       placeIcon('assets/marker-icon-black.png', blackIcon, end_lat, end_lon);
 
     }).fail(function(data) {
-      console.log(data.responseText);
+      alert(data.responseText);
     });
   });
 
   // get data from controller via gon
 
-  console.log(gon.uber_cars)
   var cars_hash = gon.uber_cars
   var cars_json = JSON.parse(cars_hash)
-
-  console.log(cars_json)
-
-  console.log(cars_json["prices"][0]["display_name"])
-  console.log(cars_json["prices"][0]["product_id"])
 
   for(var i=0; i < cars_json["prices"].length; i++) {
     var name = cars_json["prices"][i]["display_name"];
@@ -115,7 +103,6 @@ $(document).ready(function() {
     $('#accordion').append('<div class="active title"><h2>' + name + '</h2><div class="ui secondary button">Get an Uber</div></div>' +
     '<div class="active content"><h5>' + distance + ' miles away</h5><br>' +
     '<p>Cost range: ' + estimate + '<br> Trip Duration: ' + dur_minutes + ' minutes</p></div>');
-
 
   }
 
