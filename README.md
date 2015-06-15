@@ -20,6 +20,8 @@ Stack: Rails 4, PostgreSQL, oAuth, Uber API, Mapbox/Leaflet API.
   * Database initialization:
   <tt>rails server or rails s</tt>
 
+  * <strong>Important Note</strong>: As per Uber API documentation, "the Uber API implements the OAuth 2.0 standard for secure authentication and authorization. All communication with Uber servers must be over SSL (https://)" (Refer to [Uber API Authentication docs](https://developer.uber.com/v1/auth/)). To run the app, user proxy service to get https:// URL to make secure requests from instead of localhost.
+
 * Under development: requesting Rides to your location w/ /v1/requests endpoint.
 
 * Screenshots:
